@@ -1,0 +1,6 @@
+{
+  "name": "Draftworks Gym",
+  "description": "Transform your mind and muscle with Draftworks Gym. Science-backed training, expert coaching, and world-class facilities.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
