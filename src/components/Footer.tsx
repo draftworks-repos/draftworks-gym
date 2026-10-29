@@ -96,7 +96,7 @@ export const Footer: React.FC<FooterProps> = ({
                 </a>
               </li>
               <li>
-                <a href="#about-page" onClick={(e) => handleNav(e, 'about')}>
+                <a href="/about" onClick={(e) => handleNav(e, 'about')}>
                   About Draftworks
                 </a>
               </li>
@@ -121,7 +121,7 @@ export const Footer: React.FC<FooterProps> = ({
                 </a>
               </li>
               <li>
-                <a href="#contact-page" onClick={(e) => handleNav(e, 'contact')}>
+                <a href="/contact" onClick={(e) => handleNav(e, 'contact')}>
                   Contact &amp; Location
                 </a>
               </li>

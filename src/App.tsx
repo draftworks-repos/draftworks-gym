@@ -46,31 +46,50 @@ export default function App() {
     price: "₹2000 / 3 month",
   });
 
-  // Sync route on mount & hash changes
+  // Sync route on mount and browser navigation.
   useEffect(() => {
-    const handleHash = () => {
+    const handleLocation = () => {
+      const pathname = window.location.pathname.replace(/\/+$/, "") || "/";
       const hash = window.location.hash.toLowerCase();
-      if (hash === "#about-page" || hash === "#about") {
+
+      if (
+        pathname === "/about" ||
+        (pathname === "/" && (hash === "#about-page" || hash === "#about"))
+      ) {
         setCurrentPage("about");
+        if (pathname === "/") {
+          window.history.replaceState(null, "", "/about");
+        }
         window.scrollTo({ top: 0, behavior: "instant" });
-      } else if (hash === "#contact-page" || hash === "#contact") {
+      } else if (
+        pathname === "/contact" ||
+        (pathname === "/" && (hash === "#contact-page" || hash === "#contact"))
+      ) {
         setCurrentPage("contact");
+        if (pathname === "/") {
+          window.history.replaceState(null, "", "/contact");
+        }
         window.scrollTo({ top: 0, behavior: "instant" });
       } else {
         setCurrentPage("home");
       }
     };
 
-    handleHash();
-    window.addEventListener("hashchange", handleHash);
-    return () => window.removeEventListener("hashchange", handleHash);
+    handleLocation();
+    window.addEventListener("popstate", handleLocation);
+    window.addEventListener("hashchange", handleLocation);
+    return () => {
+      window.removeEventListener("popstate", handleLocation);
+      window.removeEventListener("hashchange", handleLocation);
+    };
   }, []);
 
   const handleNavigate = (page: PageRoute, sectionId?: string) => {
     if (page === "home") {
       setCurrentPage("home");
+      const destination = sectionId ? `/#${sectionId}` : "/";
+      window.history.pushState(null, "", destination);
       if (sectionId) {
-        window.location.hash = sectionId;
         setTimeout(() => {
           const el = document.getElementById(sectionId);
           if (el) {
@@ -80,16 +99,15 @@ export default function App() {
           }
         }, 60);
       } else {
-        window.location.hash = "hero";
         window.scrollTo({ top: 0, behavior: "instant" });
       }
     } else if (page === "about") {
       setCurrentPage("about");
-      window.location.hash = "about-page";
+      window.history.pushState(null, "", "/about");
       window.scrollTo({ top: 0, behavior: "instant" });
     } else if (page === "contact") {
       setCurrentPage("contact");
-      window.location.hash = "contact-page";
+      window.history.pushState(null, "", "/contact");
       window.scrollTo({ top: 0, behavior: "instant" });
     }
   };

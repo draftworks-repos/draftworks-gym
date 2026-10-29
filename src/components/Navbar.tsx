@@ -82,7 +82,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </li>
             <li>
               <a
-                href="#about-page"
+                href="/about"
                 className={`navbar-link ${currentPage === 'about' ? 'active-nav-link' : ''}`}
                 onClick={(e) => handleLinkClick(e, 'about')}
               >
@@ -91,7 +91,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </li>
             <li>
               <a
-                href="#contact-page"
+                href="/contact"
                 className={`navbar-link ${currentPage === 'contact' ? 'active-nav-link' : ''}`}
                 onClick={(e) => handleLinkClick(e, 'contact')}
               >
@@ -147,14 +147,14 @@ export const Navbar: React.FC<NavbarProps> = ({
             Gallery
           </a>
           <a
-            href="#about-page"
+            href="/about"
             className={`navbar-link ${currentPage === 'about' ? 'active-nav-link' : ''}`}
             onClick={(e) => handleLinkClick(e, 'about')}
           >
             About
           </a>
           <a
-            href="#contact-page"
+            href="/contact"
             className={`navbar-link ${currentPage === 'contact' ? 'active-nav-link' : ''}`}
             onClick={(e) => handleLinkClick(e, 'contact')}
           >
